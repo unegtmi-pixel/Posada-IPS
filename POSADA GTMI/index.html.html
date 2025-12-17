@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación IPS 30 Años</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display (Elegante) & Lato (Moderno) -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Efectos de animación -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        azulRey: '#002366', // Azul Real Profundo
+                        dorado: '#D4AF37', // Dorado Metálico
+                        doradoClaro: '#F3E5AB',
+                    },
+                    fontFamily: {
+                        titulo: ['"Playfair Display"', 'serif'],
+                        cuerpo: ['"Lato"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'pattern': "url('https://www.transparenttextures.com/patterns/cubes.png')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos personalizados para efectos dorados */
+        .text-gradient-gold {
+            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .border-gradient-gold {
+            border: 2px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(45deg, #BF953F, #FCF6BA, #B38728) border-box;
+        }
+
+        .gold-shadow {
+            box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Animación del disco de música */
+        .spin-slow {
+            animation: spin 4s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Sobre digital */
+        .envelope-container {
+            perspective: 1000px;
+        }
+        
+        body {
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen flex items-center justify-center font-cuerpo">
+
+    <!-- PANTALLA DE INICIO (Necesaria para habilitar audio en navegadores) -->
+    <div id="welcome-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-azulRey text-white transition-opacity duration-1000">
+        <div class="text-center p-6 animate__animated animate__fadeIn">
+            <div class="mb-6 text-6xl text-dorado">
+                <i class="fas fa-envelope-open-text"></i>
+            </div>
+            <h1 class="font-titulo text-3xl mb-2">Tienes una Invitación</h1>
+            <p class="text-gray-300 mb-8">IPS 30 Años</p>
+            
+            <button onclick="abrirInvitacion()" class="group relative px-8 py-3 bg-dorado text-azulRey font-bold rounded-full shadow-lg overflow-hidden transition-transform transform hover:scale-105 active:scale-95">
+                <span class="relative z-10">ABRIR INVITACIÓN</span>
+                <div class="absolute inset-0 h-full w-full bg-white/30 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-200"></div>
+            </button>
+        </div>
+    </div>
+
+    <!-- CONTENEDOR PRINCIPAL DE LA TARJETA -->
+    <div id="main-card" class="relative w-full max-w-md mx-auto hidden opacity-0 transition-opacity duration-1000">
+        
+        <!-- Tarjeta -->
+        <div class="bg-white rounded-xl shadow-2xl overflow-hidden m-4 border-4 border-azulRey relative">
+            
+            <!-- Decoración esquinas doradas -->
+            <div class="absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-dorado z-10 rounded-tl-lg"></div>
+            <div class="absolute top-0 right-0 w-16 h-16 border-t-4 border-r-4 border-dorado z-10 rounded-tr-lg"></div>
+            <div class="absolute bottom-0 left-0 w-16 h-16 border-b-4 border-l-4 border-dorado z-10 rounded-bl-lg"></div>
+            <div class="absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-dorado z-10 rounded-br-lg"></div>
+
+            <!-- HEADER / LOGO -->
+            <div class="bg-azulRey p-8 text-center relative overflow-hidden">
+                <!-- Patrón de fondo sutil -->
+                <div class="absolute inset-0 opacity-10" style="background-image: url('https://www.transparenttextures.com/patterns/stardust.png');"></div>
+                
+                <!-- Logo IPS 30 Años (SVG generado para evitar imágenes rotas) -->
+                <!-- Sugerencia: Colocado centrado para mayor impacto en móvil, o flotando izquierda si prefieres -->
+                <div class="relative z-20 animate__animated animate__fadeInDown">
+                    <svg class="w-32 h-32 mx-auto filter drop-shadow-lg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="100" cy="100" r="90" fill="white" stroke="#D4AF37" stroke-width="5"/>
+                        <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" font-family="'Playfair Display', serif" font-weight="bold" font-size="60" fill="#002366">IPS</text>
+                        <text x="50%" y="70%" dominant-baseline="middle" text-anchor="middle" font-family="'Lato', sans-serif" font-weight="bold" font-size="25" fill="#D4AF37">30 AÑOS</text>
+                        <path d="M 40 100 Q 100 160 160 100" stroke="#D4AF37" stroke-width="2" fill="none" opacity="0.5"/>
+                    </svg>
+                </div>
+                
+                <h2 class="mt-4 text-dorado font-titulo text-2xl italic">Celebra con nosotros</h2>
+            </div>
+
+            <!-- CUERPO DE LA INVITACIÓN -->
+            <div class="p-8 text-center bg-white relative">
+                <!-- Elemento decorativo de fondo -->
+                <i class="fas fa-glass-cheers absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-9xl text-gray-100 -z-0"></i>
+
+                <div class="relative z-10 space-y-6">
+                    
+                    <div class="animate__animated animate__fadeInUp animate__delay-1s">
+                        <p class="text-azulRey uppercase tracking-widest text-sm font-bold mb-2">Gran Celebración</p>
+                        <h3 class="font-titulo text-3xl md:text-4xl text-azulRey font-bold">POSADA UNE GTMI</h3>
+                    </div>
+
+                    <!-- Divisor Dorado -->
+                    <div class="flex items-center justify-center gap-4 my-4">
+                        <div class="h-px bg-dorado w-12"></div>
+                        <i class="fas fa-star text-dorado text-xs"></i>
+                        <div class="h-px bg-dorado w-12"></div>
+                    </div>
+
+                    <!-- Detalles del Evento -->
+                    <div class="space-y-4 animate__animated animate__fadeInUp animate__delay-2s">
+                        <!-- Fecha y Hora (Placeholder editable) -->
+                        <div class="bg-slate-50 p-4 rounded-lg border border-gray-200">
+                            <p class="text-azulRey font-bold text-lg"><i class="far fa-calendar-alt text-dorado mr-2"></i> FECHA DEL EVENTO</p>
+                            <p class="text-gray-600">Viernes 19 de Diciembre</p>
+                            <p class="text-gray-600 mt-1">17:00 HRS</p>
+                        </div>
+
+                        <!-- Dirección -->
+                        <div class="text-gray-700">
+                            <p class="uppercase font-bold text-azulRey text-sm tracking-wide mb-1">Lugar:</p>
+                            <h4 class="font-titulo text-xl font-bold text-dorado mb-2">BARDA GÉNOVA</h4>
+                            <p class="text-sm leading-relaxed px-4">
+                                Génova #597, Residencial Campestre,<br>
+                                Irapuato, Guanajuato
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Botón Mapa -->
+                    <div class="pt-4 animate__animated animate__zoomIn animate__delay-3s">
+                        <a href="https://www.google.com/maps/search/?api=1&query=BARDA+GENOVA+Génova+597+Residencial+Campestre+Irapuato+Guanajuato" 
+                           target="_blank" 
+                           class="inline-block bg-azulRey text-white px-8 py-3 rounded-full font-bold shadow-lg shadow-blue-900/30 hover:bg-blue-900 transition-colors transform hover:-translate-y-1 items-center gap-2">
+                            <i class="fas fa-map-marker-alt text-dorado animate-bounce"></i> VER UBICACIÓN
+                        </a>
+                    </div>
+                    
+                    <!-- Confirmación (Opcional) -->
+                    <div class="mt-4">
+                        <p class="text-xs text-gray-400">Te esperamos para festejar a lo grande</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <div class="bg-azulRey h-3"></div>
+        </div>
+
+        <!-- CONTROL DE MÚSICA FLOTANTE -->
+        <div class="fixed bottom-4 right-4 z-40">
+            <button id="music-btn" onclick="toggleMusic()" class="w-12 h-12 bg-dorado rounded-full flex items-center justify-center shadow-lg border-2 border-white animate-pulse">
+                <i id="music-icon" class="fas fa-pause text-azulRey"></i>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- AUDIO -->
+    <!-- NOTA: Reemplaza el 'src' con la URL de tu archivo mp3 de La Chona. 
+         Por ahora uso un sonido de prueba festivo libre de derechos. -->
+    <audio id="bg-music" loop>
+        <!-- Fallback de música de fiesta segura para la demo -->
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <script>
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const mainCard = document.getElementById('main-card');
+        const audio = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        const musicIcon = document.getElementById('music-icon');
+        let isPlaying = false;
+
+        function abrirInvitacion() {
+            // 1. Ocultar pantalla de bienvenida
+            welcomeScreen.classList.add('animate__fadeOut');
+            
+            setTimeout(() => {
+                welcomeScreen.style.display = 'none';
+                
+                // 2. Mostrar tarjeta principal
+                mainCard.classList.remove('hidden');
+                mainCard.classList.remove('opacity-0');
+                mainCard.classList.add('animate__fadeInUp');
+
+                // 3. Iniciar Música
+                playMusic();
+            }, 800);
+        }
+
+        function playMusic() {
+            audio.volume = 0.5; // Volumen al 50%
+            audio.play().then(() => {
+                isPlaying = true;
+                musicBtn.classList.add('spin-slow');
+            }).catch(error => {
+                console.log("El navegador bloqueó la reproducción automática: " + error);
+                musicIcon.classList.remove('fa-pause');
+                musicIcon.classList.add('fa-play');
+                musicBtn.classList.remove('spin-slow');
+                isPlaying = false;
+            });
+        }
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                musicIcon.classList.remove('fa-pause');
+                musicIcon.classList.add('fa-play');
+                musicBtn.classList.remove('spin-slow');
+            } else {
+                audio.play();
+                musicIcon.classList.remove('fa-play');
+                musicIcon.classList.add('fa-pause');
+                musicBtn.classList.add('spin-slow');
+            }
+            isPlaying = !isPlaying;
+        }
+    </script>
+</body>
+</html>
